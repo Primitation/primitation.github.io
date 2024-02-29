@@ -7,9 +7,6 @@
 html, body {
     height: 100%;
 }
-body {
-    font-family: 'Press Start 2P', cursive;
-}
 
 main section {
     display: none;
@@ -35,33 +32,31 @@ nav ul li {
     float: left;
 }
 
-nav ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
+    nav ul li a {
+        display: block;
+        color: white; /* Make sure the color is set to white or your desired color */
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
 
 nav ul li a:hover {
     background-color: #111;
 }
 
-{
-    Overflow-x: scroll;
-    Overflow-y: scroll;
-}
 
 body {
     display: table;
     width: 100%;
     height: 100%;
     background-color: #171717;
-    color: #000;
+    color: white;
     line-height: 1.6;
     position: relative;
-    font-family: sans-serif;
+    font-family: 'Press Start 2P', cursive;
     overflow: hidden;
+    overflow-x: scroll;
+    overflow-y: scroll;
 }
 
 .pixelized-text {
@@ -74,8 +69,8 @@ body {
 .slidetext {
     font-family: 'Press Start 2P', cursive;
     color: white;
-    font-size: 24px; /* Adjust the font size as needed */
-    letter-spacing: 2px; /* Adjust the letter spacing as needed */
+    font-size: 24px;
+    letter-spacing: 2px;
     text-align: center;
     z-index: 10;
 }
@@ -138,6 +133,32 @@ body {
         left: 50vw;
         top: 10vh;
     }
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+
+/* Additional styles for arrow placement */
+.arrow-container {
+    position: relative;
+}
+
+.arrow-left {
+    left: 300px;
+}
+
+.arrow-right {
+    right: 300px;
+}
+
 @-webkit-keyframes cube {
     from {
         transform: scale(0) rotate(0deg) translate(-50%, -50%);

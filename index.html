@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
-    <title>Pixelized Font Example</title>
+    <title>PorteFolio Nicolas Breton</title>
 </head>
 <body>
     <main>
         <div class="pixelized-text">
             <nav>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">Cours</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li>
+                        <a href="#home">Home</a>
+                    </li>
+                    <li>
+                        <a href="#courses">Cours</a>
+                    </li>
                 </ul>
             </nav>
         </div>
@@ -29,25 +31,25 @@
         <!-- Home Page -->
         <section id="home">
             <h1>Welcome to the Home Page!</h1>
-            <img src="https://drive.google.com/uc?id=YOUR_FILE_ID" alt="Image to Download" id="downloadImage">
         </section>
 
-        <!-- About Page -->
-        <section id="about">
-            <div class="slidetext"><br> Cours 1 <br> La Porte </div>
-            <iframe src="https://onedrive.live.com/embed?resid=49E8218E02DC74F9%2116511&amp;authkey=!AA48vDiiEhNVoBM&amp;em=2&amp;wdAr=1.7777777777777777" width="952px" height="576px" frameborder="0" class="slide">Ceci est un document <a target="_blank" href="https://office.com">Microsoft Office</a> incorpor�, avec <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
+        <!-- About Page-->
+        <section id="courses">
+            <br />
+            <div class="slidetext"> Cours 1 - La Porte </div>
+            <br />
+            <div class="slide-container">
+                <button class="arrow arrow-left" onclick="changeSlide(-1)">◄</button>
 
+                <! -- Slide 1 -->
+                <iframe src="https://onedrive.live.com/embed?resid=49E8218E02DC74F9%2116511&amp;authkey=!AA48vDiiEhNVoBM&amp;em=2&amp;wdAr=1.7777777777777777" data-text="Cours 1 - La Porte" width="476px" height="288px" frameborder="0" class="slide">Ceci est un document <a target="_blank" href="https://office.com">Microsoft Office</a> incorporé, avec <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
+                <! -- Slide 2 -->
+                <iframe src="https://onedrive.live.com/embed?resid=49E8218E02DC74F9%2116511&amp;authkey=!AA48vDiiEhNVoBM&amp;em=2&amp;wdAr=1.7777777777777777" data-text="Cours 2 - Les Widgets" width="476px" height="288px" frameborder="0" class="slide">Ceci est un document <a target="_blank" href="https://office.com">Microsoft Office</a> incorporé, avec <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
+
+                <button class="arrow arrow-right" onclick="changeSlide(1)">►</button>
+            </div>
         </section>
 
-        <!-- Services Page -->
-        <section id="services">
-            <h1>Our Services</h1>
-        </section>
-
-        <!-- Contact Page -->
-        <section id="contact">
-            <h1>Contact Us</h1>
-        </section>
 
     </main>
 
