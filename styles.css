@@ -57,8 +57,6 @@ body {
     position: relative;
     font-family: 'Press Start 2P', cursive;
     overflow: hidden;
-    overflow-x: scroll;
-    overflow-y: scroll;
 }
 
 .pixelized-text {
