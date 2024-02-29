@@ -10,6 +10,8 @@ html, body {
 
 main section {
     display: none;
+    position: relative; /* Add position relative to ensure proper stacking context */
+    z-index: 1; /* Adjust z-index for sections */
 }
 
 main section:target {
@@ -20,8 +22,8 @@ main section:target {
 nav {
     background-color: #333;
     overflow: hidden;
-    z-index : -2;
-}
+    z-index: 0; /* Adjust z-index to ensure proper stacking */
+}   
 
 nav ul {
     list-style-type: none;
@@ -73,12 +75,14 @@ body {
     letter-spacing: 2px;
     text-align: center;
     z-index: 10;
+    position: relative; /* Add position relative to ensure proper stacking context */
 }
 
 .slide {
     display: block;
     margin: 0 auto;
     z-index: 5;
+    position: relative; /* Add position relative to ensure proper stacking context */
 }
 
 .cube {
@@ -136,7 +140,7 @@ body {
 
 .arrow {
     position: absolute;
-    top: 50%;
+    top: 60%;
     transform: translateY(-50%);
     background: none;
     border: none;
