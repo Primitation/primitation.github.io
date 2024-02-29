@@ -160,11 +160,11 @@ iframe {
 }
 
 .arrow-left {
-    left: 10%;
+    left: 10px;
 }
 
 .arrow-right {
-    right: 10%;
+    right: 10px;
 }
 
 @-webkit-keyframes cube {
