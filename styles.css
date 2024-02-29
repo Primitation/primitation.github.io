@@ -82,7 +82,15 @@ body {
     z-index: 5;
     position: relative; /* Add position relative to ensure proper stacking context */
 }
-
+iframe {
+    min-width:476;
+    min-height:288px;
+    max-width :80%;
+    max-height :80%;
+    width: auto;
+    height: auto;
+    aspect-ratio :1.65;
+}
 .cube {
     position: absolute;
     top: 80vh;
@@ -147,18 +155,17 @@ body {
     cursor: pointer;
 }
 
-
 /* Additional styles for arrow placement */
 .arrow-container {
     position: relative;
 }
 
 .arrow-left {
-    left: 30%;
+    left: 20%;
 }
 
 .arrow-right {
-    right: 30%;
+    right: 20%;
 }
 
 @-webkit-keyframes cube {
