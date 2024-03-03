@@ -17,16 +17,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
         updateSlide();
     }
-
+    const projectLinks = [
+        'https://drive.google.com/uc?export=download&id=17QgSGuJUDIko77IaKU9nty_bDoVUiuVA', // Link for Slide 1
+        // Add more links for additional slides if needed
+    ];
     function updateSlide() {
         slides.forEach((slide, index) => {
             if (index === currentSlide) {
                 slide.style.display = 'block';
                 slidetext.innerHTML = slide.getAttribute('data-text');
+                updateProjectLink(); // Call the function to update project link
             } else {
                 slide.style.display = 'none';
             }
         });
+    }
+    // Function to update the project link based on the current slide
+    function updateProjectLink() {
+        const projectLinkButton = document.querySelector('.btn');
+        projectLinkButton.setAttribute('onclick', `window.location='${projectLinks[currentSlide]}'`);
     }
 
     // Event listeners for arrow buttons
@@ -40,5 +49,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Update the slide on page load
     updateSlide();
+    updateProjectLink(); // Call the function to update project link
 });
 
