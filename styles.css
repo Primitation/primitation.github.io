@@ -86,8 +86,6 @@ body {
     margin-top: 10px;
     background-color: rgba(255, 255, 255, 0.1);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(3.8px);
-    -webkit-backdrop-filter: blur(3.8px);
     border: 1px solid rgba(255, 255, 255, 0.3);
     color: white;
     padding: 12px 30px;
@@ -98,8 +96,6 @@ body {
     .btn:hover {
         background-color: rgba(255, 255, 255, 0.02);
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(3.8px);
-        -webkit-backdrop-filter: blur(3.8px);
         color: rgba(217, 173, 64, 1);
         border: 1px solid rgba(217, 173, 64, 1);
     }
