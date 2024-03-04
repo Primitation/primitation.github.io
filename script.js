@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const projectLinks = [
         'https://drive.google.com/uc?export=download&id=17QgSGuJUDIko77IaKU9nty_bDoVUiuVA', // Link for Slide 1
         // Add more links for additional slides if needed
+        'https://drive.google.com/uc?export=download&id=',
     ];
 
     function updateProjectLink() {
