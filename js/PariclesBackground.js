@@ -15,6 +15,7 @@ const mouse = {
 document.addEventListener('mousemove', function (event) {
     mouse.x = event.clientX;
     mouse.y = event.clientY;
+    //Mouse gets
 });
 
 // Particle array

@@ -1,4 +1,4 @@
-/* Reset and Body */
+/* General Reset */
 html, body {
     margin: 0;
     padding: 0;
@@ -53,7 +53,7 @@ header.hero {
 .nav-bar {
     display: flex;
     justify-content: center;
-    gap: 15px; /* Spacing between buttons */
+    gap: 15px;
     margin-top: 10px;
 }
 
@@ -61,38 +61,34 @@ header.hero {
         color: #ffc107;
         text-decoration: none;
         font-weight: bold;
-        padding: 10px 20px; /* Padding for button-like appearance */
-        border: 2px solid #ffc107; /* Border for the button style */
-        border-radius: 5px; /* Rounded corners for modern look */
-        transition: background-color 0.3s, color 0.3s; /* Smooth hover effects */
+        padding: 10px 20px;
+        border: 2px solid #ffc107;
+        border-radius: 5px;
+        transition: background-color 0.3s, color 0.3s;
     }
 
         .nav-bar a:hover {
-            background-color: #ffc107; /* Highlight background on hover */
-            color: #121212; /* Dark text on hover */
+            background-color: #ffc107;
+            color: #121212;
         }
 
-/* Content Area */
+/* Content Area with Box */
 #content {
     flex: 1;
     padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-/* Content Sections */
-section {
-    display: none;
+.content-box {
+    background-color: rgba(30, 30, 30, 0.95);
     padding: 20px;
-    background-color: rgba(30, 30, 30, 0.9);
-    margin: 20px auto;
-    max-width: 800px;
     border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7);
-    z-index: 2;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
 }
-
-    section.active {
-        display: block;
-    }
 
 /* Footer */
 footer {
