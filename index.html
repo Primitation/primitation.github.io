@@ -1,60 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap">
-    <title>PorteFolio Nicolas Breton</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Primitation's Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <main>
-        <div class="pixelized-text">
-            <nav>
-                <ul>
-                    <li>
-                        <a href="#home">Home</a>
-                    </li>
-                    <li>
-                        <a href="#courses">Cours</a>
-                    </li>
-                </ul>
+    <canvas id="backgroundCanvas"></canvas>
+    <div id="page-container">
+        <header class="hero">
+            <h1>Primitation's Portfolio</h1>
+            <p>Your hub for 3D models, tools, and video game creation.</p>
+            <nav class="nav-bar">
+                <a href="#home" id="nav-home">Home</a>
+                <a href="#portfolio" id="nav-portfolio">Portfolio</a>
+                <a href="#downloads" id="nav-downloads">Downloads</a>
+                <a href="#docs" id="nav-docs">Documentation</a>
+                <a href="#contact" id="nav-contact">Contact</a>
             </nav>
+        </header>
+        <div id="content">
+            <!-- Dynamic content will be loaded here -->
         </div>
-        <div class="cube"></div>
-        <div class="cube"></div>
-        <div class="cube"></div>
-        <div class="cube"></div>
-        <div class="cube"></div>
-        <div class="cube"></div>
-
-        <!-- Home Page -->
-        <section id="home">
-            <h1>Welcome to the Home Page!</h1>
-        </section>
-
-        <!-- About Page-->
-        <section id="courses">
-            <br />
-            <div class="slidetext"> Cours 1 - La Porte </div>
-            <br />
-            <div class="slide-container">
-                <button class="arrow arrow-left" onclick="changeSlide(-1)">◄</button>
-
-                <! -- Slide 1 -->
-                <iframe class="slide" src="https://onedrive.live.com/embed?resid=49E8218E02DC74F9%2116511&amp;authkey=!AA48vDiiEhNVoBM&amp;em=2&amp;wdAr=1.7777777777777777" data-text="Cours 1 - La Porte" width="476px" height="288px" frameborder="0" class="slide">Ceci est un document <a target="_blank" href="https://office.com">Microsoft Office</a> incorporé, avec <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
-                <! -- Slide 2 -->
-                <iframe class="slide" src="https://onedrive.live.com/embed?resid=49E8218E02DC74F9%2116523&amp;authkey=!AOLwm8jd93P-Ax4&amp;em=2&amp;wdAr=1.7777777777777777" data-text="Cours 2 - Vie et Degats" width="476px" height="288px" frameborder="0">Ceci est un document <a target="_blank" href="https://office.com">Microsoft Office</a> incorporé, avec <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
-                <button class="arrow arrow-right" onclick="changeSlide(1)">►</button>
-            </div>
-            <!-- Auto width -->
-            <button class="btn" onclick="window.location='https://drive.google.com/';" ><i class="fa fa-download"></i> Project </button>
-        </section>
-
-
-    </main>
-
-    <script src="script.js"></script>
+        <footer>
+            <p>Copyright &copy; 2025 Primitation. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="js/particles.js"></script>
+    <script src="js/header.js"></script>
 </body>
 </html>
