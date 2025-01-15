@@ -71,8 +71,8 @@ header.hero {
             background-color: #ffc107;
             color: #121212;
         }
-
-/* Content Area with Box */
+        /**/
+/* Content Area with Box */ 
 #content {
     flex: 1;
     padding: 20px;
