@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     tsParticles.load("backgroundCanvas", {
         fullScreen: {
             enable: true, // Fullscreen background
-            zIndex: -1,   // Ensure it sits behind other content
         },
         particles: {
             number: {
