@@ -2,34 +2,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-bar a');
     const contentContainer = document.getElementById('content');
 
-    // Function to load content dynamically
     function loadContent(url) {
         fetch(url)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok: ' + response.statusText);
-                }
+                if (!response.ok) throw new Error('Failed to fetch content');
                 return response.text();
             })
             .then(html => {
-                // Wrap the content in a box
                 contentContainer.innerHTML = `<div class="content-box">${html}</div>`;
+
+                // After content is loaded, run WidgetLoader.js
+                const widgetLoaderScript = document.createElement('script');
+                widgetLoaderScript.src = '/js/WidgetLoader.js';
+                document.body.appendChild(widgetLoaderScript);
             })
             .catch(error => {
-                console.error('Error loading content:', error);
-                contentContainer.innerHTML = '<div class="content-box"><p>Error loading content. Please try again later.</p></div>';
+                console.error(error);
+                contentContainer.innerHTML = '<p>Error loading content.</p>';
             });
     }
 
-    // Event listeners for navigation links
     navLinks.forEach(link => {
         link.addEventListener('click', event => {
             event.preventDefault();
-            const targetId = link.getAttribute('href').substring(1); // Get category name
-            loadContent(`content/${targetId}.html`); // Load the corresponding file
+            const targetId = link.getAttribute('href').substring(1);
+            loadContent(`content/${targetId}.html`);
         });
     });
 
-    // Default content load
-    loadContent('content/home.html'); // Default to home content
+    loadContent('content/home.html'); // Default content
 });
