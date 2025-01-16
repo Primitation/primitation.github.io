@@ -11,10 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(html => {
                 contentContainer.innerHTML = `<div class="content-box">${html}</div>`;
 
-                // After content is loaded, run WidgetLoader.js
-                const widgetLoaderScript = document.createElement('script');
-                widgetLoaderScript.src = '/js/WidgetLoader.js';
-                document.body.appendChild(widgetLoaderScript);
             })
             .catch(error => {
                 console.error(error);
