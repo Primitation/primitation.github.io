@@ -9,6 +9,14 @@ document.addEventListener('DOMContentLoaded', () => {
         mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
     });
 
+    
+    // Central function to initialize all scripts in the loaded content
+    function initializeScripts() {
+        console.log('Initializing content scripts...');
+        initializeParticles(); // Call the particle initialization function
+        // Add other script initializations as needed
+    }
+
     // Load content dynamically
     function loadContent(url) {
         fetch(url)
@@ -18,11 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(html => {
                 contentContainer.innerHTML = `<div class="content-box">${html}</div>`;
-
-                // Dynamically load widgets
-                const widgetLoaderScript = document.createElement('script');
-                widgetLoaderScript.src = '/js/WidgetLoader.js';
-                document.body.appendChild(widgetLoaderScript);
+                initializeScripts(); // Initialize scripts after loading content
             })
             .catch(error => {
                 console.error(error);

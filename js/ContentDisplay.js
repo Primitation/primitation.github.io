@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-bar a');
     const contentContainer = document.getElementById('content');
 
+    
+
+    // Function to load content dynamically
     function loadContent(url) {
         fetch(url)
             .then(response => {
@@ -10,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(html => {
                 contentContainer.innerHTML = `<div class="content-box">${html}</div>`;
-
             })
             .catch(error => {
                 console.error(error);
@@ -18,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
+    // Add event listeners to navigation links
     navLinks.forEach(link => {
         link.addEventListener('click', event => {
             event.preventDefault();
@@ -26,5 +29,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    loadContent('content/home.html'); // Default content
+    // Load default content on page load
+    loadContent('content/home.html');
 });

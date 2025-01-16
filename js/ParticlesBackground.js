@@ -47,8 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
             },
             modes: {
                 attract: {
-                    distance: 150, // Attraction distance from the mouse
-                    duration: 0.4,
+                    distance: 300, // Attraction distance from the mouse
+                    duration: 0.1,
                 },
             },
         },
