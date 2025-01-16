@@ -1,30 +1,60 @@
 document.addEventListener('DOMContentLoaded', () => {
-    tsParticles.load('particles-js', {
-        fullScreen: false,
-        background: { color: "transparent" },
+    tsParticles.load("particles-js", {
+        fullScreen: false, // Particles stay within the container
+        background: {
+            color: "transparent",
+        },
         particles: {
-            number: { value: 100, density: { enable: true, value_area: 800 } },
-            color: { value: "#ffffff" },
-            shape: { type: "circle" },
-            opacity: { value: 0.5, random: false },
-            size: { value: 3, random: true },
+            number: {
+                value: 100, // Number of particles around the viewer
+                density: {
+                    enable: false, // Disable auto-scaling by area
+                },
+            },
+            color: {
+                value: "#FFC107", // Yellow particles
+            },
+            shape: {
+                type: "circle", // Particle shape
+            },
+            opacity: {
+                value: 0.7, // Slightly transparent
+                random: true,
+            },
+            size: {
+                value: 3, // Particle size
+                random: true,
+            },
             move: {
                 enable: true,
-                speed: 1,
+                speed: 1.5, // Movement speed
                 direction: "none",
-                random: false,
-                straight: false,
-                outModes: { default: "bounce" },
-                attract: { enable: true, rotateX: 600, rotateY: 1200 },
+                random: true, // Randomized movement
+                straight: false, // Particles move in curves
+                outModes: {
+                    default: "bounce", // Bounce off edges of the container
+                },
+                attract: {
+                    enable: false, // Disable global attraction
+                },
             },
         },
         interactivity: {
+            detect_on: "canvas", // Interactivity only on the particle canvas
             events: {
-                onHover: { enable: true, mode: "attract" },
-                onClick: { enable: false },
+                onHover: {
+                    enable: true,
+                    mode: "attract", // Particles move toward mouse
+                },
+                onClick: {
+                    enable: false, // No particle addition on click
+                },
             },
             modes: {
-                attract: { distance: 200, duration: 0.4 },
+                attract: {
+                    distance: 150, // Attraction distance from the mouse
+                    duration: 0.4,
+                },
             },
         },
     });
