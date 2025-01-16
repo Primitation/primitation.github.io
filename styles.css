@@ -284,3 +284,38 @@ footer {
         padding-bottom: 50.625%; /* 16:9 aspect ratio for the adjusted width */
     }
 }
+
+.viewer-container {
+    position: relative;
+    width: 50%; /* Half the content box size */
+    max-width: 800px;
+    min-width: 300px;
+    margin: 0 auto;
+}
+
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Ensure particles do not block interaction with the iframe */
+    z-index: 1;
+}
+
+.iframe-wrapper {
+    position: relative;
+    z-index: 2; /* Place iframe above the particles */
+    padding-bottom: 56.25%; /* 16:9 ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+    .iframe-wrapper iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
