@@ -32,31 +32,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     loadContent('content/home.html'); // Default content
 });
-
-
-function loadMarmosetViewer(containerId, modelPath) {
-    const container = document.querySelector(containerId);
-    if (!container) {
-        console.error(`Container with ID ${containerId} not found.`);
-        return;
-    }
-
-    // Fetch the widget template
-    fetch('widgets/MarmosetViewer.html')
-        .then(response => response.text())
-        .then(html => {
-            // Insert the widget template into the container
-            container.innerHTML = html;
-
-            // Update the `src` attribute of the iframe with the provided modelPath
-            const iframe = container.querySelector('iframe');
-            if (iframe) {
-                iframe.src = modelPath;
-            } else {
-                console.error('No iframe found in the Marmoset Viewer widget.');
-            }
-        })
-        .catch(error => {
-            console.error('Error loading the Marmoset Viewer widget:', error);
-        });
-}
