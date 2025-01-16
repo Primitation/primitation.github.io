@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 random: true,
             },
             size: {
-                value: 3, // Default size
+                value: 6, // Default size
                 random: true,
             },
             move: {
@@ -39,20 +39,16 @@ document.addEventListener('DOMContentLoaded', () => {
             events: {
                 onHover: {
                     enable: true,
-                    mode: "repulse", // Repel particles when the mouse is near
+                    mode: "attract", // Particles move toward mouse
                 },
                 onClick: {
-                    enable: true,
-                    mode: "push", // Add particles on click
+                    enable: false, // No particle addition on click
                 },
             },
             modes: {
-                repulse: {
-                    distance: 100, // Distance for repulsion effect
+                attract: {
+                    distance: 150, // Attraction distance from the mouse
                     duration: 0.4,
-                },
-                push: {
-                    quantity: 5, // Number of particles added on click
                 },
             },
         },
