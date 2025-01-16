@@ -9,18 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 return response.text();
             })
             .then(html => {
-                // Inject the fetched content
                 contentContainer.innerHTML = `<div class="content-box">${html}</div>`;
 
-                // Look for any widgets that need initialization
-                initializeWidgets();
+                // After content is loaded, run WidgetLoader.js
+                const widgetLoaderScript = document.createElement('script');
+                widgetLoaderScript.src = '/js/WidgetLoader.js';
+                document.body.appendChild(widgetLoaderScript);
             })
             .catch(error => {
                 console.error(error);
                 contentContainer.innerHTML = '<p>Error loading content.</p>';
             });
     }
-
 
     navLinks.forEach(link => {
         link.addEventListener('click', event => {
@@ -33,29 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
     loadContent('content/home.html'); // Default content
 });
 
-function initializeWidgets() {
-    // Find all Marmoset Viewer placeholders
-    const marmosetWidgets = document.querySelectorAll('.marmoset-viewer[data-path]');
-    marmosetWidgets.forEach(widget => {
-        const modelPath = widget.getAttribute('data-path');
-        if (modelPath) {
-            const iframe = document.createElement('iframe');
-            iframe.width = '100%';
-            iframe.height = '500px';
-            iframe.src = modelPath;
-            iframe.frameBorder = '0';
-            iframe.allowFullscreen = true;
-            widget.appendChild(iframe);
-
-            // Load Marmoset Viewer script if not already present
-            if (!document.querySelector('script[src="https://www.marmoset.co/viewer/viewer.js"]')) {
-                const script = document.createElement('script');
-                script.src = 'https://www.marmoset.co/viewer/viewer.js';
-                document.body.appendChild(script);
-            }
-        }
-    });
-}
 
 function loadMarmosetViewer(containerId, modelPath) {
     const container = document.querySelector(containerId);
