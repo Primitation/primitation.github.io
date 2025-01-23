@@ -5,4 +5,5 @@ export default defineConfig({
         assetsInclude: ['**/*.glb'], // Include .glb files in the build process
         emptyOutDir: true, // also necessary
     },
-});
+}
+);
