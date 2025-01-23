@@ -68,24 +68,24 @@ export function createCone(radius = 1, height = 2, radialSegments = 32, color = 
     const material = new THREE.MeshStandardMaterial({ color });
     return new THREE.Mesh(geometry, material);
 }
+
 /**
- * Load a GLB file dynamically.
- * Supports local paths or external URLs marked with `@url`.
- * @param {string} path - Path to the GLB file, with `@url` indicating an external URL.
+ * Load a GLB file from a local path.
+ * @param {string} path - Path to the GLB file.
  * @returns {Promise<THREE.Group>} - A promise resolving to the loaded GLB model.
  */
 export async function createGLB(path) {
     const loader = new GLTFLoader();
-
     return new Promise((resolve, reject) => {
         loader.load(
-            path,
+            path, // Local file path
             (gltf) => resolve(gltf.scene), // Resolve with the loaded scene
             undefined,
             (error) => reject(error) // Reject on error
         );
     });
 }
+
 
 
 /**
