@@ -13,6 +13,12 @@ export function createScene3() {
         scene.add(model);
     }
 
+    async function loadRemoteModel(url) {
+        const model = await createGLB(url); // Remote file
+        scene.add(model);
+    }
+
+    loadRemoteModel();
     // Predefined camera positions
     const cameraPositions = [
         new THREE.Vector3(5, 0, 0),    // Position 1
