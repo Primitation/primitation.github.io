@@ -1,6 +1,5 @@
 echo Name of the commit :
 read varname
-npm run deploy -- -m varname
+npm run deploy
 echo
-echo Published
 read t

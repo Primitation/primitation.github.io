@@ -21,7 +21,7 @@ export function createScene3() {
         new THREE.Vector3(0, -5, 0),   // Position 4
     ];
 
-    loadModel('./sample/nissan_maxima.glb?url');
+    loadModel('/models/nissan_maxima.glb');
 
     const light = new THREE.PointLight(0xffffff, 100);
     light.position.set(5, 5, 5);

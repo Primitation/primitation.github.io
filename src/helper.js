@@ -70,12 +70,16 @@ export function createCone(radius = 1, height = 2, radialSegments = 32, color = 
 }
 
 /**
- * Load a GLB file.
- * @param {string} url - Path to the GLB file.
+ * Load a GLB file dynamically.
+ * @param {string} relativePath - The relative path to the GLB file (from the current module).
  * @returns {Promise<THREE.Group>} - A promise resolving to the loaded GLB model.
  */
-export async function createGLB(url) {
+export async function createGLB(relativePath) {
     const loader = new GLTFLoader();
+
+    // Resolve the full URL based on the current module's path
+    const url = new URL(relativePath, import.meta.url).href;
+
     return new Promise((resolve, reject) => {
         loader.load(
             url,
