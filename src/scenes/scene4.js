@@ -16,7 +16,7 @@ export function createScene4() {
     // Load the GLB model asynchronously
     loadGLBModel(
         scene,
-        './assets/models/nissan_maxima.glb',
+        './assets/models/car1/scene.gltf',
         (model) => {
             console.log('Model successfully loaded:', model);
         },
