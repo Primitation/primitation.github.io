@@ -10,6 +10,6 @@
     "dev": "vite",
     "build": "vite build",
     "gh-help": "gh-pages --help",
-    "deploy": "npm run build && gh-pages -m AutomatedDeployment --nojekyll --cname primitation.net -d dist"
+    "deploy": "npm run build && gh-pages -m Updated: `date +'%Y-%m-%d %H:%M:%S'` --nojekyll --cname primitation.net -d dist"
   }
 }
