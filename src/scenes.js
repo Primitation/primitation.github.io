@@ -22,8 +22,8 @@ export async function loadScene(sceneName) {
         const { createScene3 } = await import('./scenes/scene3.js');
         return createScene3();
     }else if (sceneName === 'scene4') {
-        const { createScene3 } = await import('./scenes/scene4.js');
-        return createScene3();
+        const { createScene4 } = await import('./scenes/scene4.js');
+        return createScene4();
     }
     throw new Error(`Scene ${sceneName} not found`);
 }
