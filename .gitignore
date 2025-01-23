@@ -126,6 +126,7 @@ ipch/
 # TFS 2012 Local Workspace
 $tf/
 node_modules/
+dist/
 # Guidance Automation Toolkit
 *.gpState
 
