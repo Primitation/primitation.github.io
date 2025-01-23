@@ -13,12 +13,6 @@ export function createScene3() {
         scene.add(model);
     }
 
-    async function loadRemoteModel(url) {
-        const model = await createGLB(url); // Remote file
-        scene.add(model);
-    }
-
-    loadRemoteModel();
     // Predefined camera positions
     const cameraPositions = [
         new THREE.Vector3(5, 0, 0),    // Position 1
@@ -27,7 +21,7 @@ export function createScene3() {
         new THREE.Vector3(0, -5, 0),   // Position 4
     ];
 
-    loadModel('/models/nissan_maxima.glb');
+    loadModel('../models/nissan_maxima.glb');
 
     const light = new THREE.PointLight(0xffffff, 100);
     light.position.set(5, 5, 5);
