@@ -1,0 +1,1 @@
+import{S as o,C as r,P as s,b as a,V as c,l as i}from"./index-Bamcrc6O.js";function f(){const e=new o;e.background=new r(2236962);const n=new s(75,window.innerWidth/window.innerHeight,.1,1e3);n.position.set(0,0,0);const t=a(16777215,100,new c(10,10,10));return e.add(t),i(e,"./assets/models/car1/scene.gltf"),{scene:e,camera:n}}export{f as createScene4};
