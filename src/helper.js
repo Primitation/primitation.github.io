@@ -1,5 +1,10 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js';
+import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 
 /**
  * Perform a circular interpolation between two points.
@@ -101,25 +106,125 @@ export function createCone(radius = 1, height = 2, radialSegments = 32, color = 
 }
 
 /**
- * Load a GLB model and add it to the scene asynchronously.
+ * Create a 3D loading throbber with animated rotation and scaling.
+ * @param {THREE.Scene} scene - The Three.js scene to add the throbber to.
+ * @param {THREE.Camera} camera - The camera used for post-processing.
+ * @param {THREE.WebGLRenderer} renderer - The WebGLRenderer for post-processing.
+ * @returns {THREE.Mesh} - The throbber mesh for removal later.
+ */
+export function createThrobber(scene, camera, renderer) {
+    const geometry = new THREE.SphereGeometry(0.5, 32, 32);
+    const material = new THREE.MeshStandardMaterial({
+        color: 0xff9900,
+        emissive: 0xff9900,
+        emissiveIntensity: 1,
+    });
+
+    const throbber = new THREE.Mesh(geometry, material);
+    scene.add(throbber);
+
+    // Post-processing setup (Bloom Effect)
+    const composer = new EffectComposer(renderer);
+    const renderPass = new RenderPass(scene, camera);
+    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+    composer.addPass(renderPass);
+    composer.addPass(bloomPass);
+
+    // Animate the throbber (rotation + pulsing)
+    let scaleDirection = 1; // 1 for increasing size, -1 for decreasing
+
+    function animateThrobber() {
+        throbber.rotation.y += 0.05; // Rotate
+        throbber.rotation.x += 0.03;
+
+        // Pulsing effect (scaling up and down)
+        throbber.scale.x += 0.01 * scaleDirection;
+        throbber.scale.y += 0.01 * scaleDirection;
+        throbber.scale.z += 0.01 * scaleDirection;
+
+        if (throbber.scale.x > 1.2 || throbber.scale.x < 0.8) {
+            scaleDirection *= -1;
+        }
+
+        // Continue animation
+        composer.render(); // Use post-processed rendering
+        requestAnimationFrame(animateThrobber);
+    }
+    animateThrobber();
+
+    return throbber;
+}
+
+/**
+ * Create 3D text to display loading information.
+ * @param {THREE.Scene} scene - The Three.js scene to add the text to.
+ * @param {string} text - The text content to display.
+ * @param {number} size - Font size for the text.
+ * @param {number} color - Color of the text.
+ * @returns {THREE.Mesh} - The text mesh.
+ */
+export function createLoadingText(scene, text = 'Loading...', size = 1, color = 0xffffff) {
+    const loader = new FontLoader();
+
+    // Load the font and create the text
+    loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
+        const geometry = new TextGeometry(text, {
+            font: font,
+            size: size,
+            height: 0.2,
+        });
+
+        const material = new THREE.MeshStandardMaterial({ color });
+        const textMesh = new THREE.Mesh(geometry, material);
+
+        textMesh.position.set(-2, -1.5, 0); // Position the text below the throbber
+        scene.add(textMesh);
+    });
+}
+
+/**
+ * Create a 3D error indicator (e.g., a red "X" or exclamation mark).
+ * @param {THREE.Scene} scene - The Three.js scene to add the error indicator to.
+ */
+export function createErrorIndicator(scene) {
+    const geometry = new THREE.TorusGeometry(0.5, 0.1, 16, 100);
+    const material = new THREE.MeshStandardMaterial({ color: 0xff0000, emissive: 0xff0000, emissiveIntensity: 1 });
+    const errorIndicator = new THREE.Mesh(geometry, material);
+
+    errorIndicator.rotation.x = Math.PI / 2; // Rotate to form a ring
+    scene.add(errorIndicator);
+
+    return errorIndicator;
+}
+
+/**
+ * Load a GLB model with a 3D throbber and error indicator.
  * @param {THREE.Scene} scene - The Three.js scene to add the model to.
  * @param {string} modelPath - The path to the GLB model.
- * @param {Function} [onLoad] - Callback function when the model is successfully loaded.
- * @param {Function} [onError] - Callback function when there's an error loading the model.
+ * @returns {Promise} - Resolves when the model is loaded and added to the scene.
  */
-export function loadGLBModel(scene, modelPath, onLoad, onError) {
+export function loadGLBModelWithThrobber(scene, modelPath) {
     const loader = new GLTFLoader();
-    loader.load(
-        modelPath,
-        (gltf) => {
-            scene.add(gltf.scene); // Add the model to the scene
-            console.log('Model loaded successfully:', modelPath);
-            if (onLoad) onLoad(gltf.scene); // Call the onLoad callback
-        },
-        undefined,
-        (error) => {
-            console.error('Error loading model:', error);
-            if (onError) onError(error); // Call the onError callback
-        }
-    );
+
+    // Create a loading throbber
+    const throbber = createThrobber(scene);
+
+    return new Promise((resolve, reject) => {
+        loader.load(
+            modelPath,
+            (gltf) => {
+                scene.remove(throbber); // Remove throbber on success
+                scene.add(gltf.scene); // Add the loaded model to the scene
+                console.log('Model loaded successfully:', modelPath);
+                resolve(gltf.scene);
+            },
+            undefined,
+            (error) => {
+                scene.remove(throbber); // Remove throbber on error
+                createErrorIndicator(scene); // Show error indicator
+                console.error('Error loading model:', error);
+                reject(error);
+            }
+        );
+    });
 }

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { loadGLBModel, createLight } from '../helper.js';
+import { loadGLBModelWithThrobber, createLight } from '../helper.js';
 
 export function createScene4() {
     const scene = new THREE.Scene();
@@ -7,16 +7,16 @@ export function createScene4() {
 
     // Create a perspective camera
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    camera.position.set(0, 0, 0); // Set initial camera position
+    camera.position.set(5, 0, 0); // Set initial camera position
 
     // Add a light source
     const light = createLight(0xffffff, 100, new THREE.Vector3(10, 10, 10));
     scene.add(light);
 
     // Load the GLB model asynchronously
-    loadGLBModel(
+    loadGLBModelWithThrobber(
         scene,
-        './assets/models/car1/scene.gltf',
+        './assets/models/ferrary/scene.gltf',
         (model) => {
             console.log('Model successfully loaded:', model);
         },
