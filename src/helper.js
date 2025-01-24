@@ -106,13 +106,11 @@ export function createCone(radius = 1, height = 2, radialSegments = 32, color = 
 }
 
 /**
- * Create a 3D loading throbber with animated rotation and scaling.
+ * Create a 3D loading throbber (e.g., rotating and pulsing sphere).
  * @param {THREE.Scene} scene - The Three.js scene to add the throbber to.
- * @param {THREE.Camera} camera - The camera used for post-processing.
- * @param {THREE.WebGLRenderer} renderer - The WebGLRenderer for post-processing.
  * @returns {THREE.Mesh} - The throbber mesh for removal later.
  */
-export function createThrobber(scene, camera, renderer) {
+export function createThrobber(scene) {
     const geometry = new THREE.SphereGeometry(0.5, 32, 32);
     const material = new THREE.MeshStandardMaterial({
         color: 0xff9900,
@@ -122,13 +120,6 @@ export function createThrobber(scene, camera, renderer) {
 
     const throbber = new THREE.Mesh(geometry, material);
     scene.add(throbber);
-
-    // Post-processing setup (Bloom Effect)
-    const composer = new EffectComposer(renderer);
-    const renderPass = new RenderPass(scene, camera);
-    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
-    composer.addPass(renderPass);
-    composer.addPass(bloomPass);
 
     // Animate the throbber (rotation + pulsing)
     let scaleDirection = 1; // 1 for increasing size, -1 for decreasing
@@ -142,44 +133,19 @@ export function createThrobber(scene, camera, renderer) {
         throbber.scale.y += 0.01 * scaleDirection;
         throbber.scale.z += 0.01 * scaleDirection;
 
+        // Reverse scale direction if throbber reaches size limits
         if (throbber.scale.x > 1.2 || throbber.scale.x < 0.8) {
             scaleDirection *= -1;
         }
 
-        // Continue animation
-        composer.render(); // Use post-processed rendering
-        requestAnimationFrame(animateThrobber);
+        // Continue animation if the throbber is still part of the scene
+        if (scene.children.includes(throbber)) {
+            requestAnimationFrame(animateThrobber);
+        }
     }
     animateThrobber();
 
     return throbber;
-}
-
-/**
- * Create 3D text to display loading information.
- * @param {THREE.Scene} scene - The Three.js scene to add the text to.
- * @param {string} text - The text content to display.
- * @param {number} size - Font size for the text.
- * @param {number} color - Color of the text.
- * @returns {THREE.Mesh} - The text mesh.
- */
-export function createLoadingText(scene, text = 'Loading...', size = 1, color = 0xffffff) {
-    const loader = new FontLoader();
-
-    // Load the font and create the text
-    loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
-        const geometry = new TextGeometry(text, {
-            font: font,
-            size: size,
-            height: 0.2,
-        });
-
-        const material = new THREE.MeshStandardMaterial({ color });
-        const textMesh = new THREE.Mesh(geometry, material);
-
-        textMesh.position.set(-2, -1.5, 0); // Position the text below the throbber
-        scene.add(textMesh);
-    });
 }
 
 /**
