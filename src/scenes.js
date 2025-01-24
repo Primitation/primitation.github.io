@@ -23,7 +23,7 @@ export async function loadScene(sceneName) {
         return createScene3();
     }else if (sceneName === 'scene4') {
         const { createScene4 } = await import('./scenes/scene4.js');
-        return createScene4(renderer);
+        return createScene4();
     }
     throw new Error(`Scene ${sceneName} not found`);
 }
