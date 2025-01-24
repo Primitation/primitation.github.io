@@ -1,0 +1,1 @@
+import{S as t,C as o,P as s,b as a,V as c,l as i}from"./index-BwBPkfmt.js";function d(){const e=new t;e.background=new o(2236962);const n=new s(75,window.innerWidth/window.innerHeight,.1,1e3);n.position.set(5,0,0);const r=a(16777215,100,new c(10,10,10));return e.add(r),i(e,"./assets/models/ferrary/scene.gltf"),{scene:e,camera:n}}export{d as createScene4};
