@@ -194,3 +194,59 @@ export function loadGLBModelWithThrobber(scene, modelPath) {
         );
     });
 }
+
+/**
+ * Capture a screenshot of the current WebGL canvas and create a blurred overlay with a throbber.
+ * @param {THREE.WebGLRenderer} renderer - The WebGL renderer.
+ * @param {Function} onComplete - Callback function called when the transition ends.
+ * @returns {void}
+ */
+export function createSceneTransition(renderer, onComplete) {
+    // Capture the current frame as a data URL
+    const screenshot = renderer.domElement.toDataURL('image/png');
+
+    // Create a fullscreen overlay
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundImage = `url(${screenshot})`;
+    overlay.style.backgroundSize = 'cover';
+    overlay.style.filter = 'blur(10px)';
+    overlay.style.zIndex = '1000';
+    overlay.style.display = 'flex';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+
+    // Add a 3D throbber
+    const throbber = document.createElement('div');
+    throbber.style.width = '50px';
+    throbber.style.height = '50px';
+    throbber.style.border = '5px solid rgba(255, 255, 255, 0.3)';
+    throbber.style.borderTop = '5px solid white';
+    throbber.style.borderRadius = '50%';
+    throbber.style.animation = 'spin 1s linear infinite';
+
+    overlay.appendChild(throbber);
+    document.body.appendChild(overlay);
+
+    // CSS animation for the throbber
+    const style = document.createElement('style');
+    style.innerHTML = `
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Simulate a loading delay for the transition
+    setTimeout(() => {
+        // Remove the overlay and call the onComplete callback
+        overlay.remove();
+        style.remove();
+        if (onComplete) onComplete();
+    }, 2000); // 2 seconds transition duration
+}

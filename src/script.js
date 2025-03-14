@@ -4,6 +4,7 @@ import { initializeRenderer, loadScene, getRenderer } from './scenes.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { handleResize } from './helper.js';
 
+
 let currentSceneIndex = 0;
 const sceneNames = ['scene1', 'scene2', 'scene3', 'scene4'];
 let currentScene = null;
@@ -11,6 +12,8 @@ let currentScene = null;
 let currentCameraPositionIndex = 0; // Current index for camera positions
 let transitioning = false; // Prevent input during transitions
 const transitionSpeed = 0.05; // Speed of SLERP transition
+
+
 
 initializeRenderer();
 const renderer = getRenderer();
